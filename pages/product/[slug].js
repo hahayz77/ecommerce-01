@@ -56,7 +56,7 @@ const ProductDetails = ({product, products})=>{
               </div>
               <div className="buttons">
                 <button type="button" className="add-to-cart" onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                <button type="button" className="buy-now" onClick=''>Buy Now</button>
+                <button type="button" className="buy-now" onClick={()=>console.log("Buy Now")}>Buy Now</button>
               </div>
             </div>
           </div>
@@ -104,7 +104,7 @@ export const getStaticProps = async ({params: {slug}}) => {
     const product = await client.fetch(query);
     const products = await client.fetch(productsQuery);
 
-    console.log(product);
+    // console.log(product);
 
     return {
       props: {products, product}

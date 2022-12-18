@@ -1,7 +1,10 @@
 export default {
     name: 'product',
     title: 'Product',
-    type: 'document',
+    type: 'document', 
+    initialValue: {
+        qty: 1,
+      },
     fields:[
         {
             name: 'image',
@@ -30,6 +33,12 @@ export default {
             name: 'price',
             title: 'Price',
             type: 'number'
+        },
+        {
+            name: 'qty',
+            title: 'Quantity',
+            type: 'number',
+            hidden: true
         },
         {
             name: 'details',
