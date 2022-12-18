@@ -4,12 +4,11 @@ import { AiOutlineMinus, AiOutlinePlus, AiOutlineLeft, AiOutlineShopping } from 
 import { TiDeleteOutline } from 'react-icons/ti';
 import { useStateContext } from '../context/StateContext';
 import { urlFor } from '../../lib/client';
-import Product from "./Product";
 
 
 const Cart = ()=>{
    const cartRef = useRef();
-   const { totalPrice, totalQuantities, cartItems, setShowCart } = useStateContext();
+   const { totalPrice, totalQuantities, cartItems, setShowCart, itemInCart } = useStateContext();
 
    return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -51,18 +50,17 @@ const Cart = ()=>{
                 <div className="flex bottom">
                   <div>
                   <p className="quantity-desc">
-                    <span className="minus" onClick={() => toggleCartItemQuanitity(item._id, 'dec') }>
+                    <span className="minus" onClick={() => itemInCart(item, 'dec')}>
                     <AiOutlineMinus />
                     </span>
-                    <span className="num" onClick={()=> ""}>{item.qty}</span>
-                    <span className="plus" onClick={() => toggleCartItemQuanitity(item._id, 'inc') }><AiOutlinePlus /></span>
+                    <span className="num">{item.qty}</span>
+                    <span className="plus" onClick={() => itemInCart(item, 'inc') }><AiOutlinePlus /></span>
                   </p>
                   </div>
                   <button
                     type="button"
                     className="remove-item"
-                    onClick={() => onRemove(item)}
-                  >
+                    onClick={() => itemInCart(item, 'rem')}>
                     <TiDeleteOutline />
                   </button>
                 </div>
@@ -77,7 +75,7 @@ const Cart = ()=>{
               <h3>${totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button type="button" className="btn" onClick={()=>''}>
+              <button type="button" className="btn" onClick={()=>console.log("Buy with Stripe")}>
                 Pay with Stripe
               </button>
             </div>
